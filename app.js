@@ -3,7 +3,7 @@ const bodyParser=require("body-parser");
 const date=require(__dirname+"/date.js");
 const mongoose=require('mongoose');
 const _=require('lodash');
-
+require("dotenv").config();
 const app=express();
 
 let items=["Buy Food","Cook Food","Eat Food"];
@@ -14,7 +14,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb://127.0.0.1:27017/todolistDB');
+mongoose.connect(process.env.MONGO_URL);
 
 const itemsSchema={
     name: String
